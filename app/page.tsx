@@ -23,6 +23,7 @@ import { erc20Abi } from "./api/abi";
 import { fetchSupportedTokens } from "./utils";
 import TransactionStatus from "./pages/TransactionStatus";
 import type { FormData, InstitutionProps, StateProps } from "./types";
+import { bounceInOut } from "./components/AnimatedComponents";
 
 const INITIAL_FORM_STATE: FormData = {
   network: "",
@@ -279,7 +280,7 @@ export default function Home() {
 
       <AnimatePresence mode="wait">
         {transactionStatus !== "idle" ? (
-          <AnimatedPage componentKey="transaction-status">
+          <AnimatedPage variant={bounceInOut} componentKey="transaction-status">
             <TransactionStatus
               formMethods={formMethods}
               transactionStatus={transactionStatus}
@@ -298,7 +299,7 @@ export default function Home() {
             {Object.values(formValues).every(
               (value) => value === "" || value === 0,
             ) ? (
-              <AnimatedPage componentKey="transaction-form">
+              <AnimatedPage variant={bounceInOut} componentKey="transaction-form">
                 <TransactionForm
                   onSubmit={(data: FormData) => setFormValues(data)}
                   formMethods={formMethods}
@@ -306,7 +307,7 @@ export default function Home() {
                 />
               </AnimatedPage>
             ) : (
-              <AnimatedPage componentKey="transaction-preview">
+              <AnimatedPage variant={bounceInOut} componentKey="transaction-preview">
                 <TransactionPreview
                   handleBackButtonClick={() =>
                     setFormValues(INITIAL_FORM_STATE)

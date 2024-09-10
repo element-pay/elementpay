@@ -1,38 +1,17 @@
 "use client";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useAccount } from "wagmi";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
-import { PaycrestLogo } from "./ImageAssets";
-import { useAccount, useConnect } from "wagmi";
-import { useConnectModal } from "@rainbow-me/rainbowkit";
-import { primaryBtnClasses, secondaryBtnClasses } from "./Styles";
-import { Menu, MenuButton, MenuItems } from "@headlessui/react";
-import { PiCaretDown } from "react-icons/pi";
-import { classNames } from "../utils";
-import { Tooltip } from "./Tooltip";
-import { GoQuestion } from "react-icons/go";
-import { FundWalletModal } from "./FundWalletModal";
-import Image from "next/image";
-import { NetworksDropdown } from "./NetworksDropdown";
-import { WalletDetails } from "./WalletDetails";
+import { ThemeSwitch } from "./ThemeSwitch";
+import { WalletButtons } from "./WalletButtons";
+import { ElementLogo } from "./ImageAssets";
 
 export const Navbar = () => {
-  const [mounted, setMounted] = useState(false);
-
   const account = useAccount();
-  const { connectors, connect } = useConnect();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const { openConnectModal } = useConnectModal();
-
-  const createWallet = useCallback(() => {
-    const coinbaseWalletConnector = connectors.find(
-      (connector) => connector.id === "coinbaseWalletSDK",
-    );
-    if (coinbaseWalletConnector) {
-      connect({ connector: coinbaseWalletConnector });
-    }
-  }, [connectors, connect]);
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
@@ -46,43 +25,16 @@ export const Navbar = () => {
       >
         <div className="flex lg:flex-1">
           <Link href="/" className="flex items-center gap-1">
-            <div className="text-lg font-semibold">noblocks</div>
-            <PaycrestLogo className="size-3" />
+            <div className="text-lg font-semibold"></div>
+            <ElementLogo className="size-10" />
           </Link>
         </div>
 
-        <div className="flex gap-4 text-sm font-medium">
-          {!account.isConnected ? (
-            <>
-              <button
-                type="button"
-                className={secondaryBtnClasses}
-                onClick={createWallet}
-              >
-                Create wallet
-              </button>
-
-              {openConnectModal && (
-                <button
-                  type="button"
-                  className={primaryBtnClasses}
-                  onClick={openConnectModal}
-                >
-                  Connect wallet
-                </button>
-              )}
-            </>
-          ) : (
-            <>
-              <WalletDetails />
-
-              <NetworksDropdown
-                id="person"
-                selectedId="1"
-                // onSelect={handleSelect}
-              />
-            </>
-          )}
+        <div className="flex flex-1 items-center justify-end gap-3 text-sm">
+          <WalletButtons />
+          <div className={`${account.isConnected ? "" : "hidden lg:block"}`}>
+            <ThemeSwitch />
+          </div>
         </div>
       </nav>
     </header>

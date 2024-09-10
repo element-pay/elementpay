@@ -1,35 +1,24 @@
 {
-  "name": "@paycrest/noblocks",
-  "version": "2.0.0",
+  "name": "zap",
+  "version": "0.1.0",
   "private": true,
-  "author": {
-    "name": "Paycrest",
-    "email": "info@paycrest.io",
-    "url": "https://paycrest.io"
-  },
-  "license": "AGPL-3.0-only",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/paycrest/noblocks"
-  },
-  "description": "Crypto-to-fiat payments in a zap.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "preinstall": "npx only-allow pnpm"
+    "lint": "next lint"
   },
   "dependencies": {
     "@biconomy/account": "^4.4.6",
     "@biconomy/use-aa": "^1.0.14",
     "@headlessui/react": "^2.1.1",
     "@rainbow-me/rainbowkit": "^2.1.2",
+    "@svgr/webpack": "^8.1.0",
     "@tanstack/react-query": "^5.45.1",
     "axios": "^1.7.2",
     "framer-motion": "^11.2.12",
     "jsencrypt": "^3.3.2",
-    "next": "^14.2.8",
+    "next": "^14.2.6",
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",

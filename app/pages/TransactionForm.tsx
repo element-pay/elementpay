@@ -31,12 +31,12 @@ const currencies = [
   {
     value: "KES",
     label: "\uD83C\uDDF0\uD83C\uDDEA Kenyan Shilling (KES)",
-    disabled: true,
+    // disabled: true,
   },
   {
     value: "GHS",
     label: "\uD83C\uDDEC\uD83C\uDDED Ghanaian Cedi (GHS)",
-    disabled: true,
+    // disabled: true,
   },
 ];
 
@@ -130,6 +130,35 @@ export const TransactionForm = ({
       className="z-50 grid gap-6 py-10 text-sm text-neutral-900 transition-all dark:text-white"
       noValidate
     >
+      {/* Networks */}
+      <div className="flex items-center justify-between gap-3 font-medium">
+        <input type="hidden" {...register("network")} value={selectedNetwork} />
+
+        {/* Render network buttons */}
+        {networks.map((network) => (
+          <NetworkButton
+            key={network}
+            network={network}
+            logo={`/${network}-logo.svg`}
+            alt={`${network} logo`}
+            selectedNetwork={selectedNetwork}
+            handleNetworkChange={handleNetworkChange}
+            disabled={network !== "base"}
+          />
+        ))}
+
+        {/* Other network buttons */}
+        <NetworksDropdown
+          id="person"
+          title="Select Person"
+          data={otherNetworks}
+          hasImage
+          style="bg-purple-800"
+          selectedId="3"
+          // onSelect={handleSelect}
+        />
+      </div>
+
       <div className="grid gap-4 rounded-3xl border border-gray-200 p-4 transition-all dark:border-white/10">
         <div className="flex items-start gap-4">
           {/* Token */}
@@ -185,7 +214,7 @@ export const TransactionForm = ({
                     message: "Max. of 4 decimal places",
                   },
                 })}
-                className={`${inputClasses} pl-4 pr-14`}
+                className={`${inputClasses} border-[#F0B429] focus:border-[#F0B429] pl-4 pr-14`}
                 placeholder="0.5000"
                 title={
                   token === ""
@@ -295,7 +324,7 @@ export const TransactionForm = ({
               <SelectField
                 id="currency"
                 label="Currency"
-                defaultValue="NGN"
+                defaultValue="KES"
                 options={currencies}
                 validation={{
                   required: { value: true, message: "Select currency" },

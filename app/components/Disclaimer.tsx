@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { BsExclamationOctagon } from "react-icons/bs";
 import { motion, AnimatePresence } from "framer-motion";
 import { primaryBtnClasses, secondaryBtnClasses } from "./Styles";
+import ElementLogo from "../../public/element_logo.svg";
 
 export const Disclaimer = () => {
   const [showDisclaimer, setShowDisclaimer] = useState(false);
@@ -21,7 +22,6 @@ export const Disclaimer = () => {
   };
 
   const handleClose = () => {
-    // go a step back in the browser history
     window.history.back();
     toast.error("You must accept the disclaimer to proceed.");
   };
@@ -34,45 +34,45 @@ export const Disclaimer = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-40 grid min-h-screen place-items-center gap-4 bg-black/25 backdrop-blur-sm"
+          className="fixed inset-0 z-40 grid min-h-screen place-items-center gap-4 bg-black/50 backdrop-blur-sm"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="grid w-full max-w-[400px] gap-5 rounded-3xl bg-white p-5 dark:bg-neutral-800"
+            className="grid w-full max-w-[400px] gap-5 rounded-3xl bg-white p-6 shadow-xl dark:bg-black"
           >
-            <BsExclamationOctagon className="text-2xl" />
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white">
-              Disclaimer Notice
+            <div className="flex justify-center mb-4">
+              <ElementLogo width={40} height={40} /> {/* Your logo component */}
+            </div>
+            <h2 className="text-2xl font-semibold text-center text-black dark:text-white">
+              Element Disclaimer
             </h2>
-            <p className="text-sm leading-normal text-neutral-900 dark:text-white/80">
-              This application is for demo use only. Any transactions conducted
-              within this app are for illustrative purposes.
+            <p className="text-sm leading-relaxed text-center text-neutral-900 dark:text-white/80">
+              This app is a demo version for Element. Transactions are real but
+              used for demonstration purposes only. Please proceed with
+              caution.
             </p>
-            <p className="text-sm leading-normal text-neutral-900 dark:text-white/80">
-              Therefore: <br />
-              While the app records real transactions, please exercise caution
-              and do not use this app as is in a production environment. Use at
-              your own risk. The developers are not responsible for any issues
-              or damages that may arise from the use of this app.
+            <p className="text-sm leading-relaxed text-center text-neutral-900 dark:text-white/80">
+              Use this app responsibly. Element and its developers are not liable
+              for any damages or losses incurred from its use.
             </p>
 
             <div className="flex items-center justify-between">
               <button
                 type="button"
                 onClick={handleClose}
-                className={secondaryBtnClasses}
+                className={`${secondaryBtnClasses} text-dark bg-transparent border-2 border-[#1A1B1F] hover:bg-[#1A1B1F] hover:text-white dark:text-white dark:border-[#F0B429] dark:hover:bg-[#F0B429] dark:hover:text-[#1A1B1F]`}
               >
-                Back
+                Decline
               </button>
               <button
                 type="button"
                 onClick={handleAccept}
-                className={primaryBtnClasses}
+                className={`${primaryBtnClasses} bg-[#1A1B1F] text-[#F0B429] hover:bg-[#F0B429] hover:text-[#1A1B1F] dark:bg-[#F0B429] dark:text-[#1A1B1F] dark:hover:bg-[#1A1B1F] dark:hover:text-[#F0B429]`}
               >
-                I understand
+                I Understand
               </button>
             </div>
           </motion.div>

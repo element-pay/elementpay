@@ -27,11 +27,10 @@ export const SelectField = ({
           id={id}
           defaultValue={defaultValue}
           title={title}
-          className={`w-full cursor-pointer rounded-xl border border-gray-300 bg-white px-4 py-2 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed dark:border-white/20 dark:bg-neutral-900 dark:focus-visible:ring-offset-neutral-900 ${
-            value === "" || value === undefined
-              ? "text-gray-400 dark:text-white/30"
-              : "text-neutral-900 dark:text-white/80"
+          className={`w-full cursor-pointer rounded-xl border border-[#F0B429] bg-white px-4 py-2 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#F0B429] focus:ring-opacity-50 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed dark:border-[#F0B429] dark:bg-neutral-900 dark:focus-visible:ring-offset-neutral-900 ${
+            value === "" || value === undefined ? "text-gray-400 dark:text-white/30" : "text-neutral-900 dark:text-white/80"
           }`}
+          
         >
           <option value="" hidden>
             Select {label.toLowerCase()}

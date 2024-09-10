@@ -6,7 +6,7 @@ export { LogoOutlineBg } from "./LogoOutlineBg";
 export { Disclaimer } from "./Disclaimer";
 
 export { ThemeSwitch } from "./ThemeSwitch";
-export { WalletDetails } from "./WalletDetails";
+export { WalletButtons } from "./WalletButtons";
 export {
   AnimatedPage,
   AnimatedComponent,
@@ -14,7 +14,6 @@ export {
   slideInOut,
   scaleInOut,
   fadeInOut,
-  dropdownVariants,
 } from "./AnimatedComponents";
 
 export { Tooltip } from "./Tooltip";

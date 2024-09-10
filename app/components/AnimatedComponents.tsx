@@ -1,6 +1,6 @@
 "use client";
 import type { ReactNode } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import type { AnimatedComponentProps } from "../types";
 
 // Animation variants and transition
@@ -16,8 +16,11 @@ const pageTransition = {
   duration: 0.5,
 };
 
+
+
 // Animated wrapper component
 export const AnimatedPage: React.FC<{
+  variant?: Variants;
   children: ReactNode;
   componentKey: string;
 }> = ({ children, componentKey }) => (
@@ -32,6 +35,14 @@ export const AnimatedPage: React.FC<{
     {children}
   </motion.div>
 );
+
+// Add this to your animation definitions
+export const bounceInOut = {
+  initial: { scale: 0.8, opacity: 0 },
+  animate: { scale: 1, opacity: 1, transition: { type: 'spring', stiffness: 300 } },
+  exit: { scale: 0.8, opacity: 0, transition: { type: 'spring', stiffness: 300 } },
+};
+
 
 export const fadeInOut = {
   initial: { opacity: 0 },
@@ -75,24 +86,3 @@ export const AnimatedComponent = ({
     {children}
   </motion.div>
 );
-
-export const dropdownVariants = {
-  open: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 300,
-      damping: 30,
-    },
-  },
-  closed: {
-    opacity: 0,
-    y: -20,
-    transition: {
-      type: "spring",
-      stiffness: 300,
-      damping: 30,
-    },
-  },
-};
