@@ -127,7 +127,7 @@ export const TransactionForm = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="z-50 grid gap-6 py-10 text-sm text-neutral-900 transition-all dark:text-white"
+      className="z-50 grid gap-6 py-10 text-sm text-neutral-900 transition-all dark:text-white w-full max-w-[1400px] "
       noValidate
     >
       {/* Networks */}
@@ -159,10 +159,12 @@ export const TransactionForm = ({
         />
       </div>
 
-      <div className="grid gap-4 rounded-3xl border border-gray-200 p-4 transition-all dark:border-white/10">
-        <div className="flex items-start gap-4">
+      <div className="flex gap-4 w-full max-w-[1200px] mx-auto">
+
+      <div className="w-full grid gap-4 rounded-3xl border border-gray-200 p-4 transition-all dark:border-white/10 bg-[#202938] dark:bg-neutral-800 text-white">
+        <div className=" items-start gap-4 ">
           {/* Token */}
-          <div className="grid flex-1 gap-2">
+          <div className="grid gap-2">
             <SelectField
               id="token"
               label="Token"
@@ -189,7 +191,7 @@ export const TransactionForm = ({
           </div>
 
           {/* Amount */}
-          <div className="grid flex-1 gap-2">
+          <div className="grid  gap-2">
             <label htmlFor="amount" className="font-medium">
               Amount <span className="text-rose-500">*</span>
             </label>
@@ -287,8 +289,8 @@ export const TransactionForm = ({
       </div>
 
       {/* Recipient Details */}
-      <div>
-        <div className="flex items-center gap-1 pb-2">
+      <div className="flex-1" >
+        <div className="flex items-center gap-1 pb-2 ">
           <h3 className="font-medium">
             Recipient details <span className="text-rose-500">*</span>
           </h3>
@@ -297,7 +299,7 @@ export const TransactionForm = ({
           </Tooltip>
         </div>
 
-        <div className="grid gap-4 rounded-3xl border border-gray-200 p-4 transition-all dark:border-white/10">
+        <div className="grid gap-4 rounded-3xl border border-gray-200 p-4 transition-all dark:border-white/10 bg-[#111828] dark:bg-neutral-800 w-full">
           {/* Tabs */}
           <div className="flex items-center gap-2 rounded-full bg-gray-50 p-1 font-medium dark:bg-white/5">
             <TabButton
@@ -459,6 +461,7 @@ export const TransactionForm = ({
             </motion.div>
           )}
         </div>
+      </div>
       </div>
       {/* Submit button */}
       <button
