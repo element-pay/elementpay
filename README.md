@@ -1,4 +1,4 @@
-Certainly! Here's the complete README in Markdown code:
+
 
 ````markdown
 # Element Pay System: Token-Based Transaction Form for Africa
@@ -161,9 +161,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Element Pay System** aims to provide an easy and secure way for people in Africa to send and receive money across borders using stablecoins, while converting them to local currencies. Built with a focus on user experience and accessibility, it is a modern payment solution for the continent's growing digital economy.
+**Element Pay System** aims to provide an easy and secure way for people in Africa to send and receive money across borders using crypto and stablecoins, while converting them to local currencies. Built with a focus on user experience and accessibility, it is a modern payment solution for the continent's growing digital economy.
 
-```
-
-Feel free to adjust any specific details or links according to your project.
 ```
