@@ -320,7 +320,7 @@ export const TransactionForm = ({
               key="bank-transfer"
               {...fadeInOut}
               transition={{ duration: 0.3 }}
-              className="grid gap-4"
+              className="grid gap-4 text-white"
             >
               {/* Currency */}
               <SelectField
