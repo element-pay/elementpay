@@ -28,6 +28,7 @@ export const WalletButtons = () => {
         label={"Connect"}
         showBalance={false}
       />
+      {console.log(account.address)}
 
       {!account.isConnected && (
         <button

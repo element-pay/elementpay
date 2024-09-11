@@ -71,7 +71,7 @@ export default function Home() {
   // Get token balances using custom hook and Ethereum contract interaction
   const { data: smartTokenBalanceInWei } = useReadContract({
     abi: erc20Abi,
-    address: fetchSupportedTokens(account.chain?.name)?.find(
+    address: fetchSupportedTokens("Base")?.find(
       (t) => t.symbol.toUpperCase() === token,
     )?.address as `0x${string}`,
     functionName: "balanceOf",
@@ -80,7 +80,7 @@ export default function Home() {
 
   const { data: tokenBalanceInWei } = useReadContract({
     abi: erc20Abi,
-    address: fetchSupportedTokens(account.chain?.name)?.find(
+    address: fetchSupportedTokens("Base")?.find(
       (t) => t.symbol.toUpperCase() === token,
     )?.address as `0x${string}`,
     functionName: "balanceOf",
@@ -249,7 +249,7 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currency, amount, token]);
 
-  const tokenDecimals = fetchSupportedTokens(account.chain?.name)?.find(
+  const tokenDecimals = fetchSupportedTokens("Base")?.find(
     (t) => t.symbol.toUpperCase() === token,
   )?.decimals;
 

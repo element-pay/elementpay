@@ -134,6 +134,7 @@ export function fetchSupportedTokens(
       ],
     };
   }
+  console.log('Tokens for network', network, ':', tokens[network]);
   return tokens[network];
 }
 
@@ -160,6 +161,6 @@ export function getGatewayContractAddress(
 ): string | undefined {
   return {
     Base: "0x30f6a8457f8e42371e204a9c103f2bd42341dd0f",
-    "Base Sepolia": "0x847dfdaa218f9137229cf8424378871a1da8f625",
+    // "Base Sepolia": "0x847dfdaa218f9137229cf8424378871a1da8f625",
   }[network];
 }

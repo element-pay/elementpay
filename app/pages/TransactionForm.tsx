@@ -167,7 +167,7 @@ export const TransactionForm = ({
               id="token"
               label="Token"
               options={
-                fetchSupportedTokens(account.chain?.name)?.map((token) => ({
+                fetchSupportedTokens("Base")?.map((token) => ({
                   value: token.symbol,
                   label: token.symbol,
                 })) ?? []
