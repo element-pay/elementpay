@@ -1,7 +1,9 @@
 
 
 ````markdown
-# Element Pay System: Token-Based Transaction Form for Africa
+**Element Pay System** aims to provide an easy and secure way for people in Africa to send and receive money across borders using crypto and stablecoins, while converting them to local currencies. Built with a focus on user experience and accessibility, it is a modern payment solution for the continent's growing digital economy.
+
+## Element Pay System: Token-Based Transaction Form for Africa
 
 **Element Pay System** is a decentralized payment solution designed for Africa, enabling users to send money across borders with ease. It leverages blockchain technology to facilitate cross-border transactions using stablecoins like USDC, and supports conversions into local currencies such as the Nigerian Naira (NGN), Kenyan Shilling (KES), and Ghanaian Cedi (GHS).
 
@@ -161,6 +163,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Element Pay System** aims to provide an easy and secure way for people in Africa to send and receive money across borders using crypto and stablecoins, while converting them to local currencies. Built with a focus on user experience and accessibility, it is a modern payment solution for the continent's growing digital economy.
 
 ```
