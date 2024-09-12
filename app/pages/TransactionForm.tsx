@@ -40,21 +40,11 @@ const currencies = [
   },
 ];
 
-/**
- * TransactionForm component renders a form for submitting a transaction.
- * It includes fields for selecting network, token, amount, and recipient details.
- * The form also displays rate and fee information based on the selected token.
- *
- * @param formMethods - Form methods from react-hook-form library.
- * @param onSubmit - Function to handle form submission.
- * @param stateProps - State properties for the form.
- */
 export const TransactionForm = ({
   formMethods,
   onSubmit,
   stateProps,
 }: TransactionFormProps) => {
-  // Destructure stateProps
   const {
     tokenBalance,
     smartTokenBalance,
@@ -70,7 +60,6 @@ export const TransactionForm = ({
     institutions: supportedInstitutions,
   } = stateProps;
 
-  // Destructure formMethods from react-hook-form
   const {
     handleSubmit,
     register,
@@ -78,16 +67,13 @@ export const TransactionForm = ({
     formState: { errors, isValid, isDirty },
   } = formMethods;
 
-  // Get values of currency, amount, and token from form
   const currency = watch("currency");
   const amount = watch("amount");
   const token = watch("token");
 
-  // Get account information using custom hook
   const account = useAccount();
   const { smartAccountAddress } = useSmartAccount();
 
-  // Array of objects for rendering rate and fee information
   const rateInfo = {
     key: "rate",
     label: "Rate",
@@ -102,11 +88,6 @@ export const TransactionForm = ({
 
   const renderedInfo = [rateInfo, feeInfo];
 
-  // const handleSelect = (id: string) => {
-  //   console.log(`Selected item with id ${id}`);
-  // };
-
-  // Array of available networks
   const networks = ["base", "arbitrum", "polygon"];
 
   const otherNetworks = [
@@ -163,6 +144,7 @@ export const TransactionForm = ({
 
       <div className="w-full grid gap-4 rounded-3xl border border-gray-200 p-4 transition-all dark:border-white/10 bg-[#202938] dark:bg-neutral-800 text-white">
         <div className=" items-start gap-4 ">
+
           {/* Token */}
           <div className="grid gap-2">
             <SelectField
@@ -194,6 +176,8 @@ export const TransactionForm = ({
           <div className="grid  gap-2">
             <label htmlFor="amount" className="font-medium">
               Amount <span className="text-rose-500">*</span>
+
+ 
             </label>
             <div className="relative">
               <input
@@ -216,7 +200,8 @@ export const TransactionForm = ({
                     message: "Max. of 4 decimal places",
                   },
                 })}
-                className={`${inputClasses} border-[#F0B429] focus:border-[#F0B429] pl-4 pr-14`}
+
+
                 placeholder="0.5000"
                 title={
                   token === ""
@@ -226,7 +211,7 @@ export const TransactionForm = ({
                       : "Enter amount to send"
                 }
               />
-              <div className="absolute inset-y-0 right-0 flex items-center pr-4">
+              <div className="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-600 dark:text-gray-400">
                 {watch("token")}
               </div>
             </div>
@@ -239,13 +224,11 @@ export const TransactionForm = ({
           {account.status === "connected" && token !== "" && (
             <AnimatedComponent
               variant={slideInDown}
-              className="flex items-start justify-between rounded-2xl border border-gray-200 dark:border-white/10"
+              className="flex items-start justify-between rounded-2xl border border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-900"
             >
               <div className="grid flex-1 gap-3 p-4">
-                <div className="flex items-center gap-1">
-                  <p className="text-gray-500 dark:text-white/50">
-                    Smart Wallet
-                  </p>
+                <div className="flex items-center gap-1 text-gray-600 dark:text-gray-400">
+                  Smart Wallet
                   <FundWalletModal address={smartAccountAddress} />
                 </div>
                 <div className="flex items-center gap-1">
@@ -257,16 +240,16 @@ export const TransactionForm = ({
                       height={14}
                     />
                   )}
-                  <p>
+                  <p className="text-gray-800 dark:text-gray-200">
                     {Math.round(smartTokenBalance * 100) / 100} {token}
                   </p>
                 </div>
               </div>
 
-              <div className="h-full w-px border border-dashed border-gray-200 dark:border-white/10" />
+              <div className="h-full w-px border border-dashed border-gray-300 dark:border-gray-700" />
 
               <div className="grid flex-1 gap-3 p-4">
-                <p className="text-gray-500 dark:text-white/50">
+                <p className="text-gray-600 dark:text-gray-400">
                   {account.connector.name}
                 </p>
                 <div className="flex items-center gap-1">
@@ -278,7 +261,7 @@ export const TransactionForm = ({
                       height={14}
                     />
                   )}
-                  <p>
+                  <p className="text-gray-800 dark:text-gray-200">
                     {Math.round(tokenBalance * 100) / 100} {token}
                   </p>
                 </div>
@@ -289,15 +272,18 @@ export const TransactionForm = ({
       </div>
 
       {/* Recipient Details */}
+
       <div className="flex-1" >
         <div className="flex items-center gap-1 pb-2 ">
+
           <h3 className="font-medium">
-            Recipient details <span className="text-rose-500">*</span>
+            Recipient details <span className="text-red-500">*</span>
           </h3>
           <Tooltip message="Recipient details will be encrypted onchain.">
             <HiOutlineInformationCircle className="cursor-pointer text-gray-400 hover:text-gray-500" />
           </Tooltip>
         </div>
+
 
         <div className="grid gap-4 rounded-3xl border border-gray-200 p-4 transition-all dark:border-white/10 bg-[#111828] dark:bg-neutral-800 w-full">
           {/* Tabs */}
@@ -463,55 +449,17 @@ export const TransactionForm = ({
         </div>
       </div>
       </div>
+
       {/* Submit button */}
       <button
         type="submit"
         disabled={
           !isValid || !isDirty || !account.isConnected || recipientName === ""
         }
-        className={primaryBtnClasses}
+        className={`${primaryBtnClasses} bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-800 dark:hover:bg-blue-900`}
       >
         {account.isConnected ? "Review Info" : "Connect wallet to continue"}
       </button>
-      {/* Rate and fee */}
-      <AnimatePresence>
-        {rate > 0 && Number(amount) > 0 && account.isConnected && (
-          <AnimatedComponent
-            variant={slideInOut}
-            className="flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 transition-all dark:border-white/10 dark:bg-white/5"
-          >
-            {renderedInfo.map(({ key, label, value }, index) => (
-              <AnimatedComponent
-                key={key}
-                delay={index * 0.1}
-                className={`flex items-center justify-between border-dashed border-white/10 px-4 py-3 font-normal text-gray-500 transition-all dark:text-white/50 ${index === 1 ? "border-t" : ""}`}
-              >
-                <p>{label}</p>
-                <p
-                  className={`rounded-full px-2 py-1 transition-all ${
-                    isFetchingRate
-                      ? "animate-pulse bg-gradient-to-r from-white to-gray-100 dark:from-neutral-800 dark:to-neutral-900"
-                      : "bg-white dark:bg-neutral-900"
-                  }`}
-                >
-                  <span className={`${isFetchingRate ? "blur-xl" : ""}`}>
-                    {value}
-                  </span>
-                </p>
-              </AnimatedComponent>
-            ))}
-          </AnimatedComponent>
-        )}
-      </AnimatePresence>
     </form>
   );
 };
-
-const AnimatedFeedbackItem = ({ children }: { children: React.ReactNode }) => (
-  <AnimatedComponent
-    variant={slideInDown}
-    className="flex flex-1 items-center gap-1"
-  >
-    {children}
-  </AnimatedComponent>
-);
