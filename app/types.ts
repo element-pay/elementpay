@@ -190,6 +190,13 @@ export type AnimatedComponentProps = {
   delay?: number;
 };
 
+export type bounceInOut = {
+  initial: { scale: 0.8, opacity: 0 },
+  animate: { scale: 1, opacity: 1, transition: { type: 'spring', stiffness: 200, damping: 10 } },
+  exit: { scale: 0.8, opacity: 0, transition: { type: 'spring', stiffness: 200, damping: 10 } },
+};
+
+
 export type Token = {
   name: string;
   symbol: string;

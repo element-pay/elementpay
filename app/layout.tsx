@@ -12,8 +12,10 @@ import { ToastContainer } from "react-toastify";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Element Pay",
-  description: "Crypto-to-fiat and fiat to fiat payment platform",
+
+  title: "Element by Paycrest",
+  description: "Fast Crypto-to-fiat payments.",
+
 };
 
 export default function RootLayout({
@@ -27,11 +29,11 @@ export default function RootLayout({
         <Providers>
           <div className="min-h-full min-w-full bg-white transition-colors dark:bg-neutral-900">
             <Navbar />
-            <div className="relative z-10 mx-auto flex min-h-screen flex-col items-center px-4 pt-20 transition-all">
-              <main className="w-full max-w-mobile flex-grow">{children}</main>
+            <div className="relative z-10 mx-auto flex min-h-screen max-w-mobile flex-col items-center px-4 pt-20 transition-all">
+              <main className="w-full flex-grow">{children}</main>
               <Footer />
             </div>
-            <LogoOutlineBg />
+            {/* <LogoOutlineBg /> */}
           </div>
           <ToastContainer
             position="bottom-right"

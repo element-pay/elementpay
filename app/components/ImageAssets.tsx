@@ -1,18 +1,29 @@
+import MyCustomLogo from "../../public/element_logo.png";
+import Image from 'next/image';
+
+
 interface ImageProps {
   className?: string;
 }
 
-export const PaycrestLogo = (props: ImageProps) => {
+export const ElementLogo = (props: ImageProps) => {
   return (
-    <svg
-      width="10"
-      height="10"
-      viewBox="0 0 10 10"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
-      <title>Paycrest logo</title>
+    // <svg
+    //   width="10"
+    //   height="10"
+    //   viewBox="0 0 10 10"
+    //   fill="none"
+    //   xmlns="http://www.w3.org/2000/svg"
+    //   {...props}
+    // >
+    <div>
+    <Image 
+      src={MyCustomLogo} 
+      alt="Custom Logo" 
+      width={80} 
+      height={80} 
+    />
+      <title>Element</title>
       <g clipPath="url(#clip0_3414_6245)">
         <path
           d="M5.00039 0C4.66795 0 4.36521 0.170703 3.75972 0.51211L1.64106 1.70672C1.03557 2.04813 0.732828 2.21883 0.566609 2.5C0.400391 2.78117 0.400391 3.12257 0.400391 3.80539V6.19461C0.400391 6.53491 0.745443 6.74615 1.05621 6.60747C1.96439 6.20218 2.89071 5.83057 3.83337 5.49397C3.90187 5.48079 3.97292 5.4904 4.03517 5.52129C4.09742 5.55217 4.14729 5.60255 4.17682 5.66438C4.20635 5.7262 4.21385 5.79591 4.19811 5.86239C4.18237 5.92887 4.1443 5.9883 4.08998 6.03118C3.24117 6.53229 2.41401 7.06439 1.61009 7.626C1.36866 7.79467 1.38452 8.14862 1.64106 8.29328L3.75972 9.48789C4.36521 9.8293 4.66795 10 5.00039 10C5.33283 10 5.63557 9.8293 6.24106 9.48789L8.35972 8.29328C8.96521 7.95187 9.26795 7.78117 9.43417 7.5C9.60039 7.21883 9.60039 6.87742 9.60039 6.19461V3.80539C9.60039 3.12257 9.60039 2.78117 9.43417 2.5C9.26795 2.21883 8.96521 2.04813 8.35972 1.70672L6.24106 0.51211C5.63557 0.170703 5.33283 0 5.00039 0Z"
@@ -28,7 +39,7 @@ export const PaycrestLogo = (props: ImageProps) => {
           <rect width="10" height="10" fill="white" />
         </clipPath>
       </defs>
-    </svg>
+      </div>
   );
 };
 
@@ -255,6 +266,18 @@ export const XIconDarkTheme = (props: ImageProps) => {
         </clipPath>
       </defs>
     </svg>
+  );
+};
+
+export const ZapIcon = (props: ImageProps) => {
+  return (
+    <Image 
+      src={MyCustomLogo} 
+      alt="Custom Logo" 
+      width={25} 
+      height={25} 
+      {...props} 
+    />
   );
 };
 

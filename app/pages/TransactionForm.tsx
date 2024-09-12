@@ -31,12 +31,12 @@ const currencies = [
   {
     value: "KES",
     label: "\uD83C\uDDF0\uD83C\uDDEA Kenyan Shilling (KES)",
-    disabled: true,
+    // disabled: true,
   },
   {
     value: "GHS",
     label: "\uD83C\uDDEC\uD83C\uDDED Ghanaian Cedi (GHS)",
-    disabled: true,
+    // disabled: true,
   },
 ];
 
@@ -108,18 +108,50 @@ export const TransactionForm = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="z-50 grid gap-6 bg-gray-100 py-10 font-sans text-sm text-gray-900 transition-all dark:bg-gray-800 dark:text-gray-100"
+      className="z-50 grid gap-6 py-10 text-sm text-neutral-900 transition-all dark:text-white w-full max-w-[1400px] "
       noValidate
     >
-      <div className="grid gap-4 rounded-3xl border border-gray-300 bg-white p-4 transition-all dark:border-gray-700 dark:bg-gray-900">
-        <div className="flex items-start gap-4">
+      {/* Networks */}
+      <div className="flex items-center justify-between gap-3 font-medium">
+        <input type="hidden" {...register("network")} value={selectedNetwork} />
+
+        {/* Render network buttons */}
+        {networks.map((network) => (
+          <NetworkButton
+            key={network}
+            network={network}
+            logo={`/${network}-logo.svg`}
+            alt={`${network} logo`}
+            selectedNetwork={selectedNetwork}
+            handleNetworkChange={handleNetworkChange}
+            disabled={network !== "base"}
+          />
+        ))}
+
+        {/* Other network buttons */}
+        <NetworksDropdown
+          id="person"
+          title="Select Person"
+          data={otherNetworks}
+          hasImage
+          style="bg-purple-800"
+          selectedId="3"
+          // onSelect={handleSelect}
+        />
+      </div>
+
+      <div className="flex gap-4 w-full max-w-[1200px] mx-auto">
+
+      <div className="w-full grid gap-4 rounded-3xl border border-gray-200 p-4 transition-all dark:border-white/10 bg-[#202938] dark:bg-neutral-800 text-white">
+        <div className=" items-start gap-4 ">
+
           {/* Token */}
-          <div className="grid flex-1 gap-2">
+          <div className="grid gap-2">
             <SelectField
               id="token"
               label="Token"
               options={
-                fetchSupportedTokens(account.chain?.name)?.map((token) => ({
+                fetchSupportedTokens("Base")?.map((token) => ({
                   value: token.symbol,
                   label: token.symbol,
                 })) ?? []
@@ -141,12 +173,11 @@ export const TransactionForm = ({
           </div>
 
           {/* Amount */}
-          <div className="grid flex-1 gap-2">
-            <label
-              htmlFor="amount"
-              className="font-medium text-gray-800 dark:text-gray-200"
-            >
-              Amount <span className="text-red-500">*</span>
+          <div className="grid  gap-2">
+            <label htmlFor="amount" className="font-medium">
+              Amount <span className="text-rose-500">*</span>
+
+ 
             </label>
             <div className="relative">
               <input
@@ -169,7 +200,8 @@ export const TransactionForm = ({
                     message: "Max. of 4 decimal places",
                   },
                 })}
-                className={`${inputClasses} border border-gray-300 bg-gray-50 pl-4 pr-14 text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200`}
+
+
                 placeholder="0.5000"
                 title={
                   token === ""
@@ -240,8 +272,10 @@ export const TransactionForm = ({
       </div>
 
       {/* Recipient Details */}
-      <div className="text-gray-800 dark:text-gray-200">
-        <div className="flex items-center gap-1 pb-2">
+
+      <div className="flex-1" >
+        <div className="flex items-center gap-1 pb-2 ">
+
           <h3 className="font-medium">
             Recipient details <span className="text-red-500">*</span>
           </h3>
@@ -249,6 +283,171 @@ export const TransactionForm = ({
             <HiOutlineInformationCircle className="cursor-pointer text-gray-400 hover:text-gray-500" />
           </Tooltip>
         </div>
+
+
+        <div className="grid gap-4 rounded-3xl border border-gray-200 p-4 transition-all dark:border-white/10 bg-[#111828] dark:bg-neutral-800 w-full">
+          {/* Tabs */}
+          <div className="flex items-center gap-2 rounded-full bg-gray-50 p-1 font-medium dark:bg-white/5">
+            <TabButton
+              tab="bank-transfer"
+              selectedTab={selectedTab}
+              handleTabChange={handleTabChange}
+            />
+            <TabButton
+              tab="mobile-money"
+              selectedTab={selectedTab}
+              handleTabChange={handleTabChange}
+            />
+          </div>
+
+          {/* Bank Transfer Tab Contents */}
+          {selectedTab === "bank-transfer" && (
+            <motion.div
+              key="bank-transfer"
+              {...fadeInOut}
+              transition={{ duration: 0.3 }}
+              className="grid gap-4 text-white"
+            >
+              {/* Currency */}
+              <SelectField
+                id="currency"
+                label="Currency"
+                defaultValue="KES"
+                options={currencies}
+                validation={{
+                  required: { value: true, message: "Select currency" },
+                }}
+                errors={errors}
+                register={register}
+                value={watch("currency")}
+              />
+
+              {/* Recipient Bank */}
+              <SelectField
+                id="institution"
+                label="Recipient Bank"
+                options={supportedInstitutions.map(
+                  (institution: InstitutionProps) => ({
+                    value: institution.code,
+                    label: institution.name,
+                  }),
+                )}
+                validation={{
+                  required: { value: true, message: "Select recipient bank" },
+                  disabled: watch("currency") === "" || institutionsLoading,
+                }}
+                errors={errors}
+                register={register}
+                isLoading={institutionsLoading}
+                value={watch("institution")}
+                title={
+                  watch("currency") === ""
+                    ? "Select currency to enable recipient bank"
+                    : "Select recipient bank"
+                }
+              />
+
+              {/* Recipient Account */}
+              <div className="grid gap-2">
+                <label htmlFor="recipient-account" className="font-medium">
+                  Recipient Account <span className="text-rose-500">*</span>
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    id="recipient-account"
+                    {...register("accountIdentifier", {
+                      required: {
+                        value: true,
+                        message: "Enter recipient account",
+                      },
+                      pattern: {
+                        value: /\d{10}/,
+                        message: "Invalid account identifier",
+                      },
+                    })}
+                    className={inputClasses}
+                    placeholder="12345678901"
+                    maxLength={10}
+                    pattern="\d{10}"
+                  />
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 dark:text-white/20">
+                    {10 - (watch("accountIdentifier")?.toString().length ?? 0)}
+                  </div>
+                </div>
+                {errors.accountIdentifier && (
+                  <InputError message={errors.accountIdentifier.message} />
+                )}
+
+                <div className="flex items-center gap-1 text-gray-400 dark:text-white/50">
+                  <AnimatePresence mode="wait">
+                    {isFetchingRecipientName ? (
+                      <AnimatedFeedbackItem>
+                        <ImSpinner2 className="animate-spin" />
+                        <p className="text-xs">Getting recipient name...</p>
+                      </AnimatedFeedbackItem>
+                    ) : (
+                      <>
+                        {recipientName && (
+                          <AnimatedFeedbackItem>
+                            <PiCheckCircle className="text-lg text-green-700 dark:text-green-500" />
+                            <p className="capitalize text-gray-700 dark:text-white/80">
+                              {recipientName.toLocaleLowerCase()}
+                            </p>
+                          </AnimatedFeedbackItem>
+                        )}
+                        {recipientName === "" &&
+                          watch("accountIdentifier")?.toString().length ===
+                            10 &&
+                          !errors.accountIdentifier &&
+                          isValid && (
+                            <InputError message="Could not resolve account details" />
+                          )}
+                      </>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
+
+              {/* Memo */}
+              <div className="grid gap-2">
+                <label htmlFor="memo" className="font-medium">
+                  Memo <span className="text-rose-500">*</span>
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    id="memo"
+                    {...register("memo", {
+                      required: { value: true, message: "Enter memo" },
+                    })}
+                    className={inputClasses}
+                    placeholder="Enter memo"
+                    maxLength={25}
+                  />
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 dark:text-white/20">
+                    {25 - (watch("memo")?.toString().length ?? 0)}
+                  </div>
+                </div>
+                {errors.memo && <InputError message={errors.memo.message} />}
+              </div>
+            </motion.div>
+          )}
+
+          {/* Mobile Money Tab Contents */}
+          {selectedTab === "mobile-money" && (
+            <motion.div
+              key="mobile-money"
+              {...fadeInOut}
+              transition={{ duration: 0.3 }}
+              className="flex flex-col items-center justify-center gap-2 rounded-xl border border-gray-200 px-6 py-5 dark:border-white/10"
+            >
+              <FaRegHourglass className="text-yellow-700 dark:text-yellow-400" />
+              <p className="text-gray-500">Coming soon</p>
+            </motion.div>
+          )}
+        </div>
+      </div>
       </div>
 
       {/* Submit button */}

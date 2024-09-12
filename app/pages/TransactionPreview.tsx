@@ -99,11 +99,11 @@ export const TransactionPreview = ({
     data: waitData,
   } = useUserOpWait(userOpResponse);
 
-  const tokenAddress = fetchSupportedTokens(account.chain?.name)?.find(
+  const tokenAddress = fetchSupportedTokens("Base")?.find(
     (t) => t.symbol.toUpperCase() === token,
   )?.address as `0x${string}`;
 
-  const tokenDecimals = fetchSupportedTokens(account.chain?.name)?.find(
+  const tokenDecimals = fetchSupportedTokens("Base")?.find(
     (t) => t.symbol.toUpperCase() === token,
   )?.decimals;
 
@@ -442,7 +442,7 @@ export const TransactionPreview = ({
             abi: erc20Abi,
             functionName: "approve",
             args: [
-              getAddress(getGatewayContractAddress(account.chain?.name)!),
+              getAddress(getGatewayContractAddress("Base")!),
               parseUnits(amount.toString(), tokenDecimals!),
             ],
           });

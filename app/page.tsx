@@ -23,6 +23,7 @@ import { erc20Abi } from "./api/abi";
 import { fetchSupportedTokens } from "./utils";
 import TransactionStatus from "./pages/TransactionStatus";
 import type { FormData, InstitutionProps, StateProps } from "./types";
+import { bounceInOut } from "./components/AnimatedComponents";
 
 const INITIAL_FORM_STATE: FormData = {
   network: "",
@@ -70,7 +71,7 @@ export default function Home() {
   // Get token balances using custom hook and Ethereum contract interaction
   const { data: smartTokenBalanceInWei } = useReadContract({
     abi: erc20Abi,
-    address: fetchSupportedTokens(account.chain?.name)?.find(
+    address: fetchSupportedTokens("Base")?.find(
       (t) => t.symbol.toUpperCase() === token,
     )?.address as `0x${string}`,
     functionName: "balanceOf",
@@ -79,7 +80,7 @@ export default function Home() {
 
   const { data: tokenBalanceInWei } = useReadContract({
     abi: erc20Abi,
-    address: fetchSupportedTokens(account.chain?.name)?.find(
+    address: fetchSupportedTokens("Base")?.find(
       (t) => t.symbol.toUpperCase() === token,
     )?.address as `0x${string}`,
     functionName: "balanceOf",
@@ -248,7 +249,7 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currency, amount, token]);
 
-  const tokenDecimals = fetchSupportedTokens(account.chain?.name)?.find(
+  const tokenDecimals = fetchSupportedTokens("Base")?.find(
     (t) => t.symbol.toUpperCase() === token,
   )?.decimals;
 
@@ -279,7 +280,7 @@ export default function Home() {
 
       <AnimatePresence mode="wait">
         {transactionStatus !== "idle" ? (
-          <AnimatedPage componentKey="transaction-status">
+          <AnimatedPage variant={bounceInOut} componentKey="transaction-status">
             <TransactionStatus
               formMethods={formMethods}
               transactionStatus={transactionStatus}
@@ -298,7 +299,7 @@ export default function Home() {
             {Object.values(formValues).every(
               (value) => value === "" || value === 0,
             ) ? (
-              <AnimatedPage componentKey="transaction-form">
+              <AnimatedPage variant={bounceInOut} componentKey="transaction-form">
                 <TransactionForm
                   onSubmit={(data: FormData) => setFormValues(data)}
                   formMethods={formMethods}
@@ -306,7 +307,7 @@ export default function Home() {
                 />
               </AnimatedPage>
             ) : (
-              <AnimatedPage componentKey="transaction-preview">
+              <AnimatedPage variant={bounceInOut} componentKey="transaction-preview">
                 <TransactionPreview
                   handleBackButtonClick={() =>
                     setFormValues(INITIAL_FORM_STATE)
