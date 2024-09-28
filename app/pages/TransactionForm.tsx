@@ -9,6 +9,7 @@ import { PiCheckCircle } from "react-icons/pi";
 
 import {
   AnimatedComponent,
+  AnimatedFeedbackItem,
   NetworksDropdown,
   FundWalletModal,
   InputError,
