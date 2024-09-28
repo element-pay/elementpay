@@ -8,9 +8,9 @@ import { PiCaretDown } from "react-icons/pi";
 
 import { classNames } from "../utils";
 import { useOutsideClick } from "../hooks";
-import { PaycrestLogo } from "./ImageAssets";
+// import { PaycrestLogo } from "./ImageAssets";
 import { FundWalletModal } from "./FundWalletModal";
-import { dropdownVariants } from "./AnimatedComponents";
+// import { dropdownVariants } from "./AnimatedComponents";
 
 export const WalletDetails = () => {
   const account = useAccount();
@@ -32,9 +32,9 @@ export const WalletDetails = () => {
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center justify-center gap-2 rounded-xl bg-gray-50 px-2 shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-95 dark:bg-neutral-800 dark:focus-visible:ring-offset-neutral-900"
       >
-        <div className="py-2.5">
+        {/* <div className="py-2.5">
           <PaycrestLogo className="h-4 w-4" />
-        </div>
+        </div> */}
         <div className="h-10 w-px border-r border-dashed border-gray-100 dark:border-white/10" />
         <div className="flex items-center gap-2 py-2.5 dark:text-white/80">
           <p className="hidden sm:block">293 USDC</p>
@@ -53,7 +53,7 @@ export const WalletDetails = () => {
           initial="closed"
           animate={isOpen ? "open" : "closed"}
           exit="closed"
-          variants={dropdownVariants}
+          // variants={dropdownVariants}
           aria-label="Dropdown menu"
           className="absolute right-0 z-10 mt-4 max-h-52 min-w-64 max-w-full space-y-4 overflow-y-auto rounded-xl bg-gray-50 p-4 shadow-xl dark:bg-neutral-800"
         >

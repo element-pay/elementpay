@@ -7,6 +7,12 @@ import type { InstitutionProps, Token } from "./types";
  * @param code - The institution code.
  * @returns The institution name associated with the provided code, or undefined if not found.
  */
+// Add this at the beginning of your utils.ts file
+export function classNames(...classes: (string | undefined | null | false)[]): string {
+  return classes.filter(Boolean).join(' ');
+}
+
+
 export function getInstitutionNameByCode(
   code: string,
   supportedInstitutions: InstitutionProps[],
