@@ -16,6 +16,8 @@ export {
   fadeInOut,
 } from "./AnimatedComponents";
 
+export { AnimatedFeedbackItem } from './AnimatedFeedbackItem';
+
 export { Tooltip } from "./Tooltip";
 export { TransactionForm } from "../pages/TransactionForm";
 export { TransactionPreview } from "../pages/TransactionPreview";
