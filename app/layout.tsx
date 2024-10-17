@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
 
-  title: "Element by Paycrest",
+  title: "Element by bybaseflow",
   description: "Fast Crypto-to-fiat payments.",
 
 };

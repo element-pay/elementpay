@@ -28,17 +28,17 @@ const SocialLink = ({
 
 const socialsDarkTheme = [
   {
-    href: "https://warpcast.com/~/channel/paycrest",
+    href: "",
     title: "Farcaster",
     LogoSvg: FarcasterIconDarkTheme,
   },
   {
-    href: "https://github.com/paycrest",
+    href: "https://github.com/element-pay/BaseFlow",
     title: "GitHub",
     LogoSvg: GithubIconDarkTheme,
   },
   {
-    href: "https://x.com/paycrest",
+    href: "https://x.com/elementspay",
     title: "X",
     LogoSvg: XIconDarkTheme,
   },
@@ -46,17 +46,17 @@ const socialsDarkTheme = [
 
 const socialsLightTheme = [
   {
-    href: "https://warpcast.com/~/channel/paycrest",
+    href: "https://github.com/element-pay/BaseFlow",
     title: "Farcaster",
     LogoSvg: FarcasterIconLightTheme,
   },
   {
-    href: "https://github.com/paycrest",
+    href: "https://github.com/element-pay/BaseFlow",
     title: "GitHub",
     LogoSvg: GithubIconLightTheme,
   },
   {
-    href: "https://x.com/paycrest",
+    href: "https://x.com/elementspay",
     title: "X",
     LogoSvg: XIconLightTheme,
   },
@@ -81,12 +81,12 @@ export const Footer = () => {
           &copy; 2024 Powered by
         </span>{" "}
         <a
-          href="https://paycrest.io"
+          href="https://github.com/element-pay/BaseFlow"
           target="_blank"
           rel="noopener noreferrer"
           className="text-neutral-900 hover:underline dark:text-white/80"
         >
-          Paycrest Protocol
+          Base Flow
         </a>
       </p>
       <div className="flex items-center justify-center gap-2">
