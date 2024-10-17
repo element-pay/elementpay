@@ -9,7 +9,7 @@ import { useAccount, useReadContract, useSwitchChain } from "wagmi";
 
 import {
   AnimatedPage,
-  Disclaimer,
+  // Disclaimer,
   Preloader,
   TransactionForm,
   TransactionPreview,
@@ -276,7 +276,7 @@ export default function Home() {
     <>
       <Preloader isLoading={isPageLoading} />
 
-      <Disclaimer />
+      {/* <Disclaimer /> */}
 
       <AnimatePresence mode="wait">
         {transactionStatus !== "idle" ? (

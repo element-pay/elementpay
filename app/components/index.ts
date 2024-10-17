@@ -3,7 +3,7 @@ export { Footer } from "./Footer";
 export { Preloader } from "./Preloader";
 export { LogoOutlineBg } from "./LogoOutlineBg";
 
-export { Disclaimer } from "./Disclaimer";
+// export { Disclaimer } from "./Disclaimer";
 
 export { ThemeSwitch } from "./ThemeSwitch";
 export { WalletButtons } from "./WalletButtons";
